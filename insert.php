@@ -11,7 +11,7 @@ $user_id = $_SESSION["user_id"];
 
 $mysqli = require __DIR__ . "/account_management/database.php";
 
-$sql = "INSERT INTO shortcuts (point_A, point_B, name, comments, address, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO shortcuts (point_A, point_B, shortcut_name, comments, address, user_id) VALUES (?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->stmt_init();
 
