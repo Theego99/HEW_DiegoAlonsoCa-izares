@@ -591,7 +591,8 @@ footer {
         font-size: 12px;
         padding: 8px 16px;
     }
-    .back-arrow{
+
+    .back-arrow {
         font-size: 9vw;
     }
 }
@@ -630,8 +631,8 @@ footer {
     .user-box {
         margin-bottom: 4vw;
     }
-    
-    .popup{
+
+    .popup {
         max-width: none;
     }
 
@@ -658,9 +659,12 @@ footer {
     #map {
         padding-bottom: 50%;
     }
-    .popup #map{
-        max-height: 75vh;;
+
+    .popup #map {
+        max-height: 75vh;
+        ;
     }
+
     .nav_content {
         width: 50%;
         margin-left: 0;
@@ -704,6 +708,11 @@ footer {
     #drawer_input:checked~.nav_content {
         left: 41%;
         /* メニューを画面に入れる */
+    }
+
+    .route-name,
+    #route-name {
+        font-size: 3vw;
     }
 }
 
