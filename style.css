@@ -635,7 +635,7 @@ footer {
         max-width: none;
     }
 
-    @media (min-aspect-ratio: 611/962) {
+    @media (min-aspect-ratio: 516/962) {
         footer {
             position: relative;
         }

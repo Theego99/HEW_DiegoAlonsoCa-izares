@@ -86,7 +86,7 @@ if (isset($_SESSION["user_id"])) {
     </div>
     <script src="./searched_map.js"></script>
     <!-- reset password -->
-   <a href="./add-route.html" class="back-arrow">
+    <a href="./add-route.html" class="back-arrow">
         <i class="fas fa-arrow-left"></i>
     </a>
 
