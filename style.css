@@ -785,6 +785,10 @@ footer {
     .nav {
         margin-top: -5%;
     }
+    
+    footer{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 300px) {
