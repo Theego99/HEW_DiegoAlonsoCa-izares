@@ -1,8 +1,8 @@
 <?php
 $mysqli = require __DIR__ . "/account_management/database.php";
-
+$user_id = $_SESSION["user_id"];
 // 検索
-$stmt = $mysqli->prepare("SELECT s.*, u.name FROM shortcuts s JOIN users u ON s.user_id = u.id ;");
+$stmt = $mysqli->prepare("SELECT * FROM shortcuts WHERE user_id = $user_id;");
 
 $stmt->execute();
 $resultSet = $stmt->get_result();
