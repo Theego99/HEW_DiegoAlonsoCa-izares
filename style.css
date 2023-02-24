@@ -353,6 +353,88 @@ input[type="text"],
 }
 
 
+/* ログインページ */
+.login-header {
+    text-align: center;
+    margin-top: 3%;
+    padding: 5%ñ
+}
+
+
+.new-user-btn {
+    background-color: #4ba1d2;
+    color: white;
+    border: none;
+    border-radius: 46px;
+    padding: 11px 30px;
+    margin: 3% auto;
+    margin-bottom: 1%;
+    width: fit-content;
+    transition: .3s;
+}
+
+.new-user-btn a {
+    color: white;
+}
+
+.new-user-btn:hover {
+    background-color: #459db9;
+    transition: 0.3s;
+}
+
+.signup-completeBtn {
+    color: #459db9;
+    margin: 3% auto;
+    margin-bottom: 1%;
+    width: fit-content;
+}
+
+#login-form,
+#signup-form, .login-form {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#login-form input,
+#signup-form input, .login-form input {
+    width: 100%;
+    background-color: #e8f0fe;
+    padding: 3% 5%;
+    margin: 8px 2vw;
+    border: none;
+    border-radius: 4px;
+}
+.login-form input{
+    
+    font-size: 2rem;
+}
+
+#signup-form {
+    width: 60% !important;
+}
+
+#login-form input::placeholder,
+#signup-form input::placeholder,
+.login-form input::placeholder {
+    font-weight: 800;
+    color: #b9b9b9;
+}
+
+#login-submitbtn, #signup-submitbtn {
+    background-color: #166898 !important;
+    color: white;
+    padding: 1.2% 10% !important;
+    width: fit-content !important;
+    margin-left: 37% !important;
+}
+
+.em {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
 
 /* 道検索ページのスタイリング */
 .search-box {
@@ -714,6 +796,15 @@ footer {
     #route-name {
         font-size: 3vw;
     }
+
+    #signup-submitbtn{
+        padding: 4.2% 12% !important;
+        font-size: x-large !important;
+    }
+    #signup-form input{
+        padding: 8% 5% !important;
+        font-size: xx-large !important;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -771,25 +862,11 @@ footer {
     .search-box {
         margin-top: 100px !important;
     }
+    #login-submitbtn, #signup-submitbtn {
+        padding: none !important;
+        margin-left: 34% !important;
+    }
 
-    #login-submitbtn{
-        background-color: #166898 !important;
-        color: white;
-        padding: 3.2% 13% !important;
-        width: fit-content !important;
-        margin-left: 37% !important;
-        font-size: xx-large;
-    }
-    #login-form input, #signup-form input{
-        width: 100%;
-        background-color: #e8f0fe;
-        padding: 8% 5%;
-        margin: 8px 2vw;
-        border: none;
-        /* box-sizing: border-box; */
-        border-radius: 4px;
-        font-size: xx-large;
-    }
 }
 
 @media screen and (max-width:350px) {
@@ -860,83 +937,7 @@ footer {
 
 
 
-/* ログインページ */
-.login-header {
-    text-align: center;
-    margin-top: 3%;
-    padding: 5%ñ
-}
 
-
-.new-user-btn {
-    background-color: #4ba1d2;
-    color: white;
-    border: none;
-    border-radius: 46px;
-    padding: 11px 30px;
-    margin: 3% auto;
-    margin-bottom: 1%;
-    width: fit-content;
-    transition: .3s;
-}
-
-.new-user-btn a {
-    color: white;
-}
-
-.new-user-btn:hover {
-    background-color: #459db9;
-    transition: 0.3s;
-}
-
-.signup-completeBtn {
-    color: #459db9;
-    margin: 3% auto;
-    margin-bottom: 1%;
-    width: fit-content;
-}
-
-#login-form,
-#signup-form {
-    display: block;
-    margin: 0 auto;
-    width: fit-content;
-}
-
-#login-form input,
-#signup-form input {
-    width: 100%;
-    background-color: #e8f0fe;
-    padding: 3% 5%;
-    margin: 8px 2vw;
-    border: none;
-    /* box-sizing: border-box; */
-    border-radius: 4px;
-}
-
-#signup-form {
-    width: 60% !important;
-}
-
-#login-form input::placeholder,
-#signup-input::placeholder {
-    font-weight: 800;
-    color: #b9b9b9;
-}
-
-#login-submitbtn {
-    background-color: #166898 !important;
-    color: white;
-    padding: 1.2% 10% !important;
-    width: fit-content !important;
-    margin-left: 37% !important;
-}
-
-.em {
-    display: block;
-    margin: 0 auto;
-    width: fit-content;
-}
 
 @media screen and (max-width:1000px) {
     .login-image {
@@ -945,13 +946,13 @@ footer {
 }
 
 @media screen and (max-width:800px) {
-    #login-form input {
+    #login-form input, .login-form input {
         margin: 6px 0;
     }
 }
 
 @media screen and (max-width:600px) {
-    #login-form input {
+    #login-form input, .login-form input {
         margin: 8px 25%;
         width: 51vw;
     }
