@@ -771,6 +771,25 @@ footer {
     .search-box {
         margin-top: 100px !important;
     }
+
+    #login-submitbtn{
+        background-color: #166898 !important;
+        color: white;
+        padding: 3.2% 13% !important;
+        width: fit-content !important;
+        margin-left: 37% !important;
+        font-size: xx-large;
+    }
+    #login-form input, #signup-form input{
+        width: 100%;
+        background-color: #e8f0fe;
+        padding: 8% 5%;
+        margin: 8px 2vw;
+        border: none;
+        /* box-sizing: border-box; */
+        border-radius: 4px;
+        font-size: xx-large;
+    }
 }
 
 @media screen and (max-width:350px) {
@@ -785,10 +804,10 @@ footer {
     .nav {
         margin-top: -5%;
     }
-    
     footer{
-        display: none;
+        display:none;
     }
+
 }
 
 @media screen and (max-width: 300px) {
