@@ -80,7 +80,6 @@ if (isset($_SESSION["user_id"])) {
             <article class="user-box">
                 <img class="user-icon" src="design/images/user_icon.jpg" alt="ユーザー画像">
                 <div class="user-name">
-                    <h2>user name:</h2>
                     <h1><?= htmlspecialchars($user["name"]) ?></h1>
                     <p><?= htmlspecialchars($user["email"]) ?></p>
                 </div>
