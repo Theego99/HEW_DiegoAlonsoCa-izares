@@ -17,43 +17,43 @@
 </head>
 
 <body>
-  <header class="header">
-    <img class="logoimage" src="./design/images/NUKEMICHI.png">
-    <!-- ヘッダーロゴ -->
-    <div class="logo"></div>
-    <!-- ハンバーガーメニュー部分 -->
-    <div class="nav">
-      <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
-      <input id="drawer_input" class="drawer_hidden" type="checkbox">
+<header class="header">
+        <img class="logoimage" src="./design/images/NUKEMICHI.png">
+        <!-- ヘッダーロゴ -->
+        <div class="logo"></div>
+        <!-- ハンバーガーメニュー部分 -->
+        <div class="nav">
+            <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+            <input id="drawer_input" class="drawer_hidden" type="checkbox">
 
-      <!-- ハンバーガーアイコン -->
-      <label for="drawer_input" class="drawer_open"><span></span></label>
-      <!-- メニュー -->
-      <nav class="nav_content">
-        <ul class="nav_list">
-          <!-- 三本線のやつ -->
-          <div class="musimegame">
-            <img src="./design/images/search.svg">
-            <li class="nav_item"><a href="search-page.php">SEARCH</a></li>
-          </div>
-          <div class="arrow">
-            <img src="./design/images/arrow.svg">
-            <li class="nav_item"><a href="add-route.html">NEW SHORTCUT</a></li>
-          </div>
+            <!-- ハンバーガーアイコン -->
+            <label for="drawer_input" class="drawer_open"><span></span></label>
+            <!-- メニュー -->
+            <nav class="nav_content">
+                <ul class="nav_list">
+                    <!-- 三本線のやつ -->
+                    <a href="search-page.php" class="musimegame">
+                        <img src="./design/images/search.svg">
+                        <li class="nav_item">SEARCH</li>
+                    </a>
+                    <a href="add-route.html" class="arrow">
+                        <img src="./design/images/arrow.svg">
+                        <li class="nav_item">NEW SHORTCUT</li>
+                    </a>
 
-          <div class="hito">
-            <img src="./design/images/user.svg">
-            <li class="nav_item"><a href="mypage.php">MY PAGE</a></li>
-          </div>
+                    <a href="mypage.php" class="hito">
+                        <img src="./design/images/user.svg">
+                        <li class="nav_item">MY PAGE</li>
+                    </a>
 
-          <div class="tikyuugi">
-            <img src="./design/images/logout.svg">
-            <li class="nav_item"><a href="index.html">LOG OUT</a></li>
-          </div>
-        </ul>
-      </nav>
-    </div>
-  </header>
+                    <a href="index.html" class="tikyuugi">
+                        <img src="./design/images/logout.svg">
+                        <li class="nav_item">LOG OUT</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
 
   <div class="search-box">

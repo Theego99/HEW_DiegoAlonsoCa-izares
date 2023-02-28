@@ -58,15 +58,10 @@ li {
 
 /* ハンバーガーアイコンの設置スペース */
 .drawer_open {
-    display: flex;
-    height: 100px;
-    width: 80px;
-    right: 20px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    right: -94vw;
+    top: 6%;
+    position: fixed;
     z-index: 100;
-    /* 重なり順を一番上にする */
     cursor: pointer;
 }
 
@@ -141,14 +136,15 @@ li {
     /* width:fit-content */
 }
 
-.nav_list a {
+.nav_list a li {
     color: #e7f3f6;
     font-size: 28px;
+    margin-bottom: 3%;
 }
 
 .nav_list img {
     width: 13%;
-    padding-left: 10px;
+    margin-left: 3%;
 }
 
 .nav_list div {
@@ -156,39 +152,10 @@ li {
 }
 
 
-/* 虫眼鏡アイコン設定 */
-.nav_list,
-.musimegame {
+/* アイコン設定 */
+.nav_list a{
+    border-bottom: solid 3px white;
     display: flex;
-    /* text-align: center; */
-    vertical-align: middle;
-    margin: 20px;
-}
-
-.musimegame {
-    border-bottom: solid 3px;
-}
-
-
-
-/* 上下矢印アイコン設定 */
-.arrow {
-    display: flex;
-    border-bottom: solid 3px;
-    margin-right: 3px;
-}
-
-
-/* ヒトアイコン設定 */
-.hito {
-    display: flex;
-    border-bottom: solid 3px;
-}
-
-/* 地球儀アイコン設定 */
-.tikyuugi {
-    display: flex;
-    border-bottom: solid 3px;
 }
 
 .nav_item {
@@ -718,6 +685,9 @@ footer {
         max-width: none;
     }
 
+    .drawer_open{
+        right: -89vw;
+    }
     @media (min-aspect-ratio: 516/962) {
         footer {
             position: relative;
@@ -849,7 +819,10 @@ footer {
         height: 5px;
         width: 30px;
     }
-
+    .drawer_open{
+        right: -87vw;
+        top:5%;
+    }
     #drawer_input:checked~.nav_content {
         left: 0%;
         /* メニューを画面に入れる */
@@ -914,6 +887,9 @@ footer {
         height: 3px;
         width: 20px;
     }
+    .drawer_open{
+        top: 4%;
+    }
 
     #msg,
     #msg2 {
@@ -932,6 +908,9 @@ footer {
 
     .nav {
         margin-top: -12%;
+    }
+    .drawer_open{
+        top: 3%;
     }
 }
 
@@ -980,7 +959,7 @@ footer {
         width: 35vw;
     }
 
-    .nav_list a {
+    .nav_list a li{
         font-size: 42px;
     }
 }
@@ -990,7 +969,7 @@ footer {
         width: 30vw;
     }
 
-    .nav_list a {
+    .nav_list a li{
         font-size: 42px;
     }
 }

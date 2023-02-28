@@ -12,8 +12,8 @@ if (isset($_SESSION["user_id"])) {
     $result = $mysqli->query($sql);
 
     $user = $result->fetch_assoc();
-}else{
-    header("Location: add-route.html");
+} else {
+    header("Location: index.html");
 }
 
 ?>
@@ -38,6 +38,43 @@ if (isset($_SESSION["user_id"])) {
 
 
 <body>
+<header class="header">
+        <img class="logoimage" src="./design/images/NUKEMICHI.png">
+        <!-- ヘッダーロゴ -->
+        <div class="logo"></div>
+        <!-- ハンバーガーメニュー部分 -->
+        <div class="nav">
+            <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+            <input id="drawer_input" class="drawer_hidden" type="checkbox">
+
+            <!-- ハンバーガーアイコン -->
+            <label for="drawer_input" class="drawer_open"><span></span></label>
+            <!-- メニュー -->
+            <nav class="nav_content">
+                <ul class="nav_list">
+                    <!-- 三本線のやつ -->
+                    <a href="search-page.php" class="musimegame">
+                        <img src="./design/images/search.svg">
+                        <li class="nav_item">SEARCH</li>
+                    </a>
+                    <a href="add-route.html" class="arrow">
+                        <img src="./design/images/arrow.svg">
+                        <li class="nav_item">NEW SHORTCUT</li>
+                    </a>
+
+                    <a href="mypage.php" class="hito">
+                        <img src="./design/images/user.svg">
+                        <li class="nav_item">MY PAGE</li>
+                    </a>
+
+                    <a href="index.html" class="tikyuugi">
+                        <img src="./design/images/logout.svg">
+                        <li class="nav_item">LOG OUT</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="mypage:">
         <?php if (isset($user)) : ?>
             <article class="user-box">
@@ -87,9 +124,4 @@ if (isset($_SESSION["user_id"])) {
         ?>
     </div>
     <script src="./searched_map.js"></script>
-    <!-- reset password -->
-    <a href="./add-route.html" class="back-arrow">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-
 </body>
