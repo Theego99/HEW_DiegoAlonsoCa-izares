@@ -18,7 +18,7 @@ if (isset($_SESSION["user_id"])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en" style="background-color: #d9d9d9;">
+<html lang="en" style="background-color: #dae7ed;">
 
 <head>
     <meta charset="UTF-8">
