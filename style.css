@@ -606,6 +606,13 @@ form input[type="file"] {
     border-radius: 30px;
 }
 
+.upload-msg {
+    position: relative;
+    padding: 0px;
+    font-size: 1em;
+    left: 26vw;
+}
+
 /*  */
 .user-icon {
     width: 18vw;
@@ -752,6 +759,11 @@ footer {
         footer {
             position: relative;
         }
+    }
+
+    .upload-msg {
+        font-size: 0.5em;
+        left: 18%;
     }
 }
 

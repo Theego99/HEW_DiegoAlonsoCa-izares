@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+if (!(isset($upload_msg))) {
+    $upload_msg = "";
+}
 
 if (isset($_SESSION["user_id"])) {
 
@@ -77,7 +80,7 @@ if (isset($_SESSION["user_id"])) {
     </header>
     <div class="mypage">
         <?php if (isset($user)) : ?>
-            <?php if ($user["profile_pic"] == null) : $pic_url = "design/images/user_icon.jpg"; ?>
+            <?php if ($user["profile_pic"] == null) : $pic_url = "uploads/user_icon.jpg"; ?>
                 <?php else : $pic_url = $user["profile_pic"]; ?><?php endif; ?>
                 <article class="user-box">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
@@ -88,7 +91,7 @@ if (isset($_SESSION["user_id"])) {
                             </div>
                         </label>
                         <input type="File" name="fileToUpload" id="fileToUpload"><br>
-                        <input class="upload-btn" type="submit" value="アップロード" name="submit">
+                        <input class="upload-btn" type="submit" value="" name="submit">
                     </form>
 
                     <div class="user-name">
@@ -103,7 +106,86 @@ if (isset($_SESSION["user_id"])) {
             ?>
             <?php endif; ?>
     </div>
+    <?php
+
+
+    if (isset($_FILES["fileToUpload"])) {
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        if (isset($_POST["submit"]) && ($_FILES["fileToUpload"]["tmp_name"]) != null) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $uploadOk = 0;
+            }
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            $upload_msg = "ファイルは既にアップロードされています、ファイル名を変更してください。";
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 50000000) {
+            $upload_msg = "ファイルが大きすぎます。";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            $upload_msg = " JPG　・ JPEG　・ PNG ・ GIF ファイルのみです。　";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            // $upload_msg = "プロフィール写真をアップロードできませんでした。";
+            // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                // Get the URL of the uploaded file
+                $pic_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/' . $target_file;
+
+                // Update the profile_pic column in the users table
+                $mysqli = require __DIR__ . "/account_management/database.php";
+
+                $sql = "UPDATE users SET profile_pic = ? WHERE id = {$_SESSION["user_id"]}";
+
+                $stmt = $mysqli->stmt_init();
+
+                if (!$stmt->prepare($sql)) {
+                    die("SQL error: " . $mysqli->error);
+                }
+
+                $stmt->bind_param(
+                    "s",
+                    $pic_url
+                );
+
+                if ($stmt->execute()) {
+                    header("Refresh:0");
+                    exit;
+                } else {
+                    die($mysqli->error . " " . $mysqli->errno);
+                }
+            } else {
+            }
+        }
+    } else {
+    }
+    ?>
+    <span class="upload-msg"><?= htmlspecialchars($upload_msg); ?></span>
     <div class="myroutes">
+
         <h1 class="title">My nukemichi</h1>
         <?php
         // 検索処理
@@ -134,84 +216,5 @@ if (isset($_SESSION["user_id"])) {
         }
         ?>
     </div>
-
-    <?php
-    if (isset($_FILES["fileToUpload"])) {
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-        // Check if image file is a actual image or fake image
-        if (isset($_POST["submit"]) && ($_FILES["fileToUpload"]["tmp_name"]) != null) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if ($check !== false) {
-                $uploadOk = 1;
-            } else {
-                $uploadOk = 0;
-            }
-        }
-
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            echo "ファイルは既にアップロードされています、ファイル名を変更してください。";
-            $uploadOk = 0;
-        }
-
-        // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 50000000) {
-            echo "ファイルが大きすぎます。";
-            $uploadOk = 0;
-        }
-
-        // Allow certain file formats
-        if (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif"
-        ) {
-            echo " JPG　・ JPEG　・ PNG ・ GIF ファイルのみです。　";
-            $uploadOk = 0;
-        }
-
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "プロフィール写真をアップロードできませんでした。";
-            // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                // Get the URL of the uploaded file
-                $pic_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/' . $target_file;
-
-                // Update the profile_pic column in the users table
-                $mysqli = require __DIR__ . "/account_management/database.php";
-
-                $sql = "UPDATE users SET profile_pic = ? WHERE id = {$_SESSION["user_id"]}";
-
-                $stmt = $mysqli->stmt_init();
-
-                if (!$stmt->prepare($sql)) {
-                    die("SQL error: " . $mysqli->error);
-                }
-
-                $stmt->bind_param(
-                    "s",
-                    $pic_url
-                );
-
-                if ($stmt->execute()) {
-                    echo htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " がアップロードされました。";
-                    exit;
-                } else {
-                    die($mysqli->error . " " . $mysqli->errno);
-                }
-            } else {
-                echo "プロフィール写真をアップロードできませんでした。";
-            }
-        }
-    } else {
-    }
-    ?>
-
-
     <script src="./searched_map.js"></script>
 </body>
