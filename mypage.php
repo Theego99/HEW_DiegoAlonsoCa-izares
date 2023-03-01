@@ -38,7 +38,7 @@ if (isset($_SESSION["user_id"])) {
 
 
 <body>
-<header class="header">
+    <header class="header">
         <img class="logoimage" src="./design/images/NUKEMICHI.png">
         <!-- ヘッダーロゴ -->
         <div class="logo"></div>
@@ -75,21 +75,33 @@ if (isset($_SESSION["user_id"])) {
             </nav>
         </div>
     </header>
-    <div class="mypage:">
+    <div class="mypage">
         <?php if (isset($user)) : ?>
-            <article class="user-box">
-                <img class="user-icon" src="design/images/user_icon.jpg" alt="ユーザー画像">
-                <div class="user-name">
-                    <h1><?= htmlspecialchars($user["name"]) ?></h1>
-                    <p><?= htmlspecialchars($user["email"]) ?></p>
-                </div>
-            </article>
+            <?php if ($user["profile_pic"] == null) : $pic_url = "design/images/user_icon.jpg"; ?>
+                <?php else : $pic_url = $user["profile_pic"]; ?><?php endif; ?>
+                <article class="user-box">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                        <label for="fileToUpload">
+                            <div class="profile-pic" style="background-image: url('<?= $pic_url ?>')">
+                                <i class=""></i>
+                                <span>写真を変更</span>
+                            </div>
+                        </label>
+                        <input type="File" name="fileToUpload" id="fileToUpload"><br>
+                        <input class="upload-btn" type="submit" value="アップロード" name="submit">
+                    </form>
 
-        <?php else :
+                    <div class="user-name">
+                        <h1><?= htmlspecialchars($user["name"]) ?></h1>
+                        <p><?= htmlspecialchars($user["email"]) ?></p>
+                    </div>
+                </article>
+
+            <?php else :
             header('Location: ./account_management/logout.php');
             exit;
-        ?>
-        <?php endif; ?>
+            ?>
+            <?php endif; ?>
     </div>
     <div class="myroutes">
         <h1 class="title">My nukemichi</h1>
@@ -122,5 +134,84 @@ if (isset($_SESSION["user_id"])) {
         }
         ?>
     </div>
+
+    <?php
+    if (isset($_FILES["fileToUpload"])) {
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        if (isset($_POST["submit"]) && ($_FILES["fileToUpload"]["tmp_name"]) != null) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $uploadOk = 0;
+            }
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "ファイルは既にアップロードされています、ファイル名を変更してください。";
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "ファイルが大きすぎます。";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            echo " JPG　・ JPEG　・ PNG ・ GIF ファイルのみです。　";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "プロフィール写真をアップロードできませんでした。";
+            // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                // Get the URL of the uploaded file
+                $pic_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/' . $target_file;
+
+                // Update the profile_pic column in the users table
+                $mysqli = require __DIR__ . "/account_management/database.php";
+
+                $sql = "UPDATE users SET profile_pic = ? WHERE id = {$_SESSION["user_id"]}";
+
+                $stmt = $mysqli->stmt_init();
+
+                if (!$stmt->prepare($sql)) {
+                    die("SQL error: " . $mysqli->error);
+                }
+
+                $stmt->bind_param(
+                    "s",
+                    $pic_url
+                );
+
+                if ($stmt->execute()) {
+                    echo htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " がアップロードされました。";
+                    exit;
+                } else {
+                    die($mysqli->error . " " . $mysqli->errno);
+                }
+            } else {
+                echo "プロフィール写真をアップロードできませんでした。";
+            }
+        }
+    } else {
+    }
+    ?>
+
+
     <script src="./searched_map.js"></script>
 </body>
