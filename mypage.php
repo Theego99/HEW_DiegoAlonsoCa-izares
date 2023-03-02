@@ -1,9 +1,7 @@
 <?php
 
 session_start();
-if (!(isset($upload_msg))) {
     $upload_msg = "";
-}
 
 if (isset($_SESSION["user_id"])) {
 
@@ -37,6 +35,7 @@ if (isset($_SESSION["user_id"])) {
     <!--ファビコンの設定-->
     <link rel="shortcut icon" href="./design/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="./design/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css">
 </head>
 
 
@@ -56,21 +55,21 @@ if (isset($_SESSION["user_id"])) {
             <nav class="nav_content">
                 <ul class="nav_list">
                     <!-- 三本線のやつ -->
-                    <a href="search-page.php" class="musimegame">
+                    <a href="search-page.php">
                         <img src="./design/images/search.svg">
                         <li class="nav_item">SEARCH</li>
                     </a>
-                    <a href="add-route.html" class="arrow">
+                    <a href="add-route.html">
                         <img src="./design/images/arrow.svg">
                         <li class="nav_item">NEW SHORTCUT</li>
                     </a>
 
-                    <a href="mypage.php" class="hito">
+                    <a href="mypage.php">
                         <img src="./design/images/user.svg">
                         <li class="nav_item">MY PAGE</li>
                     </a>
 
-                    <a href="index.html" class="tikyuugi">
+                    <a href="index.html" >
                         <img src="./design/images/logout.svg">
                         <li class="nav_item">LOG OUT</li>
                     </a>
@@ -172,7 +171,7 @@ if (isset($_SESSION["user_id"])) {
                 );
 
                 if ($stmt->execute()) {
-                    header("Refresh:0");
+                    header("location: mypage.php");
                     exit;
                 } else {
                     die($mysqli->error . " " . $mysqli->errno);
@@ -195,7 +194,7 @@ if (isset($_SESSION["user_id"])) {
         if (count($results) > 0) {
             foreach ($results as $r) {
                 printf(
-                    "<div class=\"search-results-container\">
+        "<div class=\"search-results-container\">
           <div class=\"search-result\">
             <h1 class=\"route-name\">%s</h1>
             <p class=\"result-location\">%s</p>
@@ -203,16 +202,24 @@ if (isset($_SESSION["user_id"])) {
             <p id=\"result-point_a\" style=\"display:none;\"> %s</p>
             <p id=\"result-point_b\" style=\"display:none;\"> %s</p>
           </div>
-        </div>",
+        </div>
+        <form action=\"delete-route.php\" method=\"post\" class=\"btn btn-delete\">
+            
+                <span class=\"mdi mdi-delete mdi-24px\"></span>
+            <button class=\"mdi mdi-delete-empty mdi-24px\" type=\"submit\">
+            </button>
+            <input type=\"hidden\" id=\"route-id\" name=\"route-id\" value=\"%s\">
+        </form>",
                     $r["shortcut_name"],
                     $r["address"],
                     $r["comments"],
                     $r["point_a"],
                     $r["point_b"],
+                    $r["id"],
                 );
             }
         } else {
-            echo "まだ抜け道を登録していません";
+            echo "<h3 style=\"text-align:center;\">まだ抜け道を登録していません</h3>";
         }
         ?>
     </div>

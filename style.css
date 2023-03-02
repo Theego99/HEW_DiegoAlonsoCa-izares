@@ -142,10 +142,14 @@ li {
     font-size: 28px;
     margin-bottom: 3%;
 }
-
+.nav_list a:hover >img{
+    opacity: .7;
+    transition: .3s;
+}
 .nav_list img {
     width: 13%;
     margin-left: 3%;
+    transition: .3s;
 }
 
 .nav_list div {
@@ -585,8 +589,14 @@ input[type="text"],
 
 .profile-pic span {
     display: inline-block;
-    padding-top: 4.5em;
-    padding-bottom: 4.5em;
+    padding-top: 40%;
+    padding-bottom: 50%;
+}
+
+@media screen and (max-width: 400px) {
+    .profile-pic span {
+        font-size: xx-small;
+    }
 }
 
 form input[type="file"] {
@@ -595,8 +605,8 @@ form input[type="file"] {
 }
 
 .upload-btn {
-    width: 7vw;
-    height: 5vh;
+    width: 3vw;
+    height: 3vw;
     position: relative;
     top: 80%;
     right: 10%;
@@ -604,9 +614,21 @@ form input[type="file"] {
     background-color: #156797;
     color: white;
     border-radius: 30px;
+    background: url('./design/images/upload.webp');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    transition: .3s;
+}
+
+.upload-btn:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .upload-msg {
+    color: red;
     position: relative;
     padding: 0px;
     font-size: 1em;
@@ -653,6 +675,60 @@ form input[type="file"] {
     color: #156797;
     font-weight: 500;
     font-size: 3vw;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+    letter-spacing: .25px;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+
+
+.btn-delete {
+    font-size: 16px;
+    color: rgba(255, 0, 0, 0.50);
+    transition: .3s;
+    position: relative;
+    left: 88%;
+    bottom: 150px;
+}
+
+
+
+.mdi-delete-empty {
+    display: none;
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: 24.25px;
+    height: 36px;
+}
+
+.btn-delete:hover {
+    background-color: lighten(red, 38%);
+    transition: .3s;
+}
+
+.btn-delete:hover>.mdi-delete-empty {
+    display: block;
+    color: red;
+}
+
+.btn-delete:hover>.mdi-delete {
+    display: none;
 }
 
 /* arrow */
@@ -1060,3 +1136,7 @@ footer {
         font-size: 42px;
     }
 }
+
+
+
+/* Index スタイリング */
