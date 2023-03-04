@@ -142,10 +142,12 @@ li {
     font-size: 28px;
     margin-bottom: 3%;
 }
-.nav_list a:hover >img{
+
+.nav_list a:hover>img {
     opacity: .7;
     transition: .3s;
 }
+
 .nav_list img {
     width: 13%;
     margin-left: 3%;
@@ -485,7 +487,6 @@ input[type="text"],
     color: #2c4588b5;
     padding-left: 10%;
     font-weight: bold;
-    /* font-size: 1.2vw; */
 }
 
 /* 検索結果のポップアップまっぷ */
@@ -543,6 +544,15 @@ input[type="text"],
     max-height: 60vh;
 }
 
+#shortcut_id {
+    display: none;
+}
+
+
+#downthumb,
+#upthumb {
+    display: none;
+}
 
 /* mypageスタイリング */
 .mypage {
@@ -770,6 +780,22 @@ footer {
     border: solid 2px #091350;
 }
 
+@media screen and (max-width: 1600px) {
+
+    .route-name,
+    #route-name {
+        font-size: 3.5vw;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .result-location,
+    #location {
+        font-size: 1em;
+    }
+}
+
 @media (min-aspect-ratio: 1777/962) {
     footer {
         position: relative;
@@ -912,7 +938,7 @@ footer {
 
     .route-name,
     #route-name {
-        font-size: 3vw;
+        font-size: 6vw;
     }
 
     #signup-submitbtn {
@@ -925,6 +951,8 @@ footer {
         font-size: xx-large !important;
     }
 }
+
+
 
 @media screen and (max-width: 520px) {
 
@@ -1136,7 +1164,3 @@ footer {
         font-size: 42px;
     }
 }
-
-
-
-/* Index スタイリング */

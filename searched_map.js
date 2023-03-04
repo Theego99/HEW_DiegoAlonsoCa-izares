@@ -10,9 +10,7 @@ function initMap() {
 
     const avgLat = (lat_a + lat_b) / 2;
     const avgLng = (lng_a + lng_b) / 2;
-    console.log(avgLat);
     const latlng = new google.maps.LatLng(avgLat, avgLng);
-    console.log(latlng);
 
 
     var opts = {
@@ -93,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var comment = this.querySelector('.result-comment').textContent;
             var point_a = this.querySelector('#result-point_a').textContent;
             var point_b = this.querySelector('#result-point_b').textContent;
+            var shortcut_id = this.querySelector('#result-shortcut_id').textContent;
 
             // Create the popup and background
             var popup = document.createElement('div');
@@ -110,15 +109,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div id="map"></div>\
                     <p id="point_a" style="display:none;"></p>\
                     <p id="point_b" style="display:none;"></p>\
+                    <div id="votingBtns"></div>\
                     <h1 id="route-name" ></h1>\
-                    <p id="location"></p>\
-                    <small id="comment"></small>\
                   </div>';
+
             popup.querySelector('#point_a').textContent = point_a;
             popup.querySelector('#point_b').textContent = point_b;
             popup.querySelector('#route-name').textContent = routeName;
-            popup.querySelector('#location').textContent = location;
-            popup.querySelector('#comment').textContent = comment;
             popup.appendChild(closeButton);
 
             // Append the popup and background to the body
@@ -128,6 +125,43 @@ document.addEventListener('DOMContentLoaded', function () {
             // Show the popup and background
             popup.style.display = 'block';
             background.style.display = 'block';
+            //votes btns
+            var formData = new FormData();
+            formData.append('shortcut_id', shortcut_id);
+
+            fetch("myvote.php", { method: "POST", body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.vote[0].vote); // set the variable to the resolved value
+                    var demo = lidi({
+
+                        hWrap: popup.querySelector("#votingBtns"),
+                        //set current vote status
+                        status: data.vote[0].vote,
+                        count: data.sum[0].total_votes,
+                        //update votes realtime
+                        change: status => {
+                            console.log(shortcut_id);
+                            var data = new FormData();
+                            data.append("shortcut_id", shortcut_id);
+                            data.append("vote", status);
+                            console.log(status);
+                            fetch("insertvote.php", { method: "POST", body: data })
+                                .then(res => res.json())
+                                .then(count => {
+                                    status = count.vote[0].vote;
+                                    count = count.sum[0].total_votes;
+                                    demo.recount(count);
+                                    demo.status(status);
+                                })
+                                .catch(err => console.error(err));
+                        }
+
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
 
             // Close the popup when the close button is clicked
             closeButton.addEventListener('click', function () {

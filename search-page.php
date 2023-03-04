@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>検索</title>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1QGR-mlSKkyr4m-yQ2acRX-evJ4OILbA&callback=initMap"></script>
-
+  <script src="lidi.js" defer></script>
   <link rel="stylesheet" href="./sanitize.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
-  <link rel="stylesheet" href="./style.css?v=2">
+  <link rel="stylesheet" href="./lidi.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
   <!--ファビコンの設定-->
   <link rel="shortcut icon" href="./design/images/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="./design/images/apple-touch-icon.png">
@@ -87,8 +88,9 @@ if (isset($_POST["search"])) {
             <small class=\"username\">発見者: %s</small>
             <p class=\"result-location\">%s</p>
             <p class=\"result-comment\">%s</p>
-            <p id=\"result-point_a\" style=\"display:none;\"> %s</p>
-            <p id=\"result-point_b\" style=\"display:none;\"> %s</p>
+            <p id=\"result-point_a\" style=\"display:none;\">%s</p>
+            <p id=\"result-point_b\" style=\"display:none;\">%s</p>
+            <p id=\"result-shortcut_id\" style=\"display:none;\">%s</p>
           </div>
         </div>",
         $r["shortcut_name"],
@@ -97,6 +99,7 @@ if (isset($_POST["search"])) {
         $r["comments"],
         $r["point_a"],
         $r["point_b"],
+        $r["id"],
       );
     }
   } else {

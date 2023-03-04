@@ -28,7 +28,6 @@ if (isset($_SESSION["user_id"])) {
     <title>nukemichi maker hp</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./sanitize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <script src="./validate_coordenates.js"></script>
     <script src="./map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1QGR-mlSKkyr4m-yQ2acRX-evJ4OILbA&callback=initMap"></script>
