@@ -5,11 +5,13 @@ $is_invalid = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $mysqli = require __DIR__ . "/database.php";
+    #データのサニタイジング
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
     $sql = sprintf(
         "SELECT * FROM users
                     WHERE email = '%s'",
-        $mysqli->real_escape_string($_POST["email"])
+        $mysqli->real_escape_string($email)
     );
 
     $result = $mysqli->query($sql);
@@ -46,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!--ファビコンの設定-->
     <link rel="shortcut icon" href="../design/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../design/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 
 <body>
@@ -70,5 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <em style="display: block;margin: 0 auto;width: fit-content;color:red;">メールアドレスまたはパスワードが間違っています</em>
     <?php endif; ?>
 </body>
+<a href="../index.html"><i class="fa-solid fa-arrow-left back-arrow"></i></a>
 
 </html>
