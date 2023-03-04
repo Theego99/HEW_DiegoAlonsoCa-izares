@@ -200,6 +200,7 @@ if (isset($_SESSION["user_id"])) {
             <p class=\"result-comment\">%s</p>
             <p id=\"result-point_a\" style=\"display:none;\"> %s</p>
             <p id=\"result-point_b\" style=\"display:none;\"> %s</p>
+            <p id=\"result-shortcut_id\" style=\"display:none;\">%s</p>
           </div>
         </div>
         <form action=\"delete-route.php\" method=\"post\" class=\"btn btn-delete\">
@@ -207,13 +208,15 @@ if (isset($_SESSION["user_id"])) {
                 <span class=\"mdi mdi-delete mdi-24px\"></span>
             <button class=\"mdi mdi-delete-empty mdi-24px\" type=\"submit\">
             </button>
-            <input type=\"hidden\" id=\"route-id\" name=\"route-id\" value=\"%s\">
+            <input type=\"hidden\" id=\"shortcut_id\" name=\"result-shortcut_id\" value=\"%s\">
+            
         </form>",
                     $r["shortcut_name"],
                     $r["address"],
                     $r["comments"],
                     $r["point_a"],
                     $r["point_b"],
+                    $r["id"],
                     $r["id"],
                 );
             }

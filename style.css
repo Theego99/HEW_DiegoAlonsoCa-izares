@@ -60,7 +60,7 @@ li {
 /* ハンバーガーアイコンの設置スペース */
 .drawer_open {
     right: -94vw;
-    top: 6%;
+    top: 40px;
     position: fixed;
     z-index: 100;
     cursor: pointer;

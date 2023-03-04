@@ -20,14 +20,15 @@ function lidi (inst) {
     // (C1) LIKE & DISLIKE COUNT HTML
     inst.hUpCount = document.createElement("div");
     inst.hUpCount.className = "lidiUpCount";
-    inst.hUpCount.innerHTML = inst.count[0];
+    inst.hUpCount.innerHTML = inst.count;
+    console.log(inst.count);
     inst.hWrap.classList.add("count");
     inst.hWrap.appendChild(inst.hUpCount, inst.hDown);
 
     // (C2) UPDATE LIKE & DISLIKE COUNT
     inst.recount = count => {
       inst.count = count;
-      inst.hUpCount.innerHTML = count[0];
+      inst.hUpCount.innerHTML = count;
     };
   }
 

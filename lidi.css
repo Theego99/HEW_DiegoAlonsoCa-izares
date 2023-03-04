@@ -1,7 +1,7 @@
 
 .lidiWrap {
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: center;
     align-items: center;
     /* width: 120px; */
     /* padding: 15px; */
@@ -9,7 +9,7 @@
     align-self: flex-end;
 }
 .lidiWrap div{
-    margin-left: 1%;
+    margin-left: 3%;
 }
 .lidiWrap.count {
     width: 250px;

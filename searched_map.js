@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("clicked");
             // Get the data to populate the popup from the clicked element
             var routeName = this.querySelector('.route-name').textContent;
-            var location = this.querySelector('.result-location').textContent;
-            var comment = this.querySelector('.result-comment').textContent;
             var point_a = this.querySelector('#result-point_a').textContent;
             var point_b = this.querySelector('#result-point_b').textContent;
             var shortcut_id = this.querySelector('#result-shortcut_id').textContent;
@@ -132,13 +130,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch("myvote.php", { method: "POST", body: formData })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.vote[0].vote); // set the variable to the resolved value
                     var demo = lidi({
 
                         hWrap: popup.querySelector("#votingBtns"),
                         //set current vote status
-                        status: data.vote[0].vote,
-                        count: data.sum[0].total_votes,
+                        status : data.vote ? data.vote[0].vote : 0,
+                        count : data.sum ? data.sum[0].total_votes : 0,
+
                         //update votes realtime
                         change: status => {
                             console.log(shortcut_id);
