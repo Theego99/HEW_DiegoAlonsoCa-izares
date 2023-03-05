@@ -1,15 +1,13 @@
 <?php
 
-$host = "localhost";
+$host = "testdiegoalonsowa5fg4.mysql.database.azure.com";
 $dbname = "michimaker";
-$username = "root";
-$password = "";
+$username = "michimaker_admin";
+$password = "ganarcielo123.";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,
-                     password: $password,
-                     database: $dbname);
-                     
+@@ -13,4 +13,4 @@
 if ($mysqli->connect_errno) {
     die("Connection error: " . $mysqli->connect_error);
 }
