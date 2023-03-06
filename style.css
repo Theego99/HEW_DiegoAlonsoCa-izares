@@ -455,6 +455,10 @@ input[type="text"],
     padding: 8px;
 }
 
+.private{
+    background-color: #e8daed;
+}
+
 .search-result:hover {
     box-shadow: none;
     box-shadow: inset 2px 0 7px 0 #1e232581;

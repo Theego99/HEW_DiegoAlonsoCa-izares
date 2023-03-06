@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-    $upload_msg = "";
+$upload_msg = "";
 
 if (isset($_SESSION["user_id"])) {
 
@@ -68,7 +68,7 @@ if (isset($_SESSION["user_id"])) {
                         <li class="nav_item">MY PAGE</li>
                     </a>
 
-                    <a href="index.html" >
+                    <a href="index.html">
                         <img src="./design/images/logout.svg">
                         <li class="nav_item">LOG OUT</li>
                     </a>
@@ -188,12 +188,12 @@ if (isset($_SESSION["user_id"])) {
         <?php
         // 検索処理
         require "myroutes.php";
-
+        require "myprivateroutes.php";
         // 結果を表示
-        if (count($results) > 0) {
-            foreach ($results as $r) {
+        if (count($public_routes) > 0) {
+            foreach ($public_routes as $r) {
                 printf(
-        "<div class=\"search-results-container\">
+                    "<div class=\"search-results-container\">
           <div class=\"search-result\">
             <h1 class=\"route-name\">%s</h1>
             <p class=\"result-location\">%s</p>
@@ -208,7 +208,7 @@ if (isset($_SESSION["user_id"])) {
                 <span class=\"mdi mdi-delete mdi-24px\"></span>
             <button class=\"mdi mdi-delete-empty mdi-24px\" type=\"submit\">
             </button>
-            <input type=\"hidden\" id=\"shortcut_id\" name=\"result-shortcut_id\" value=\"%s\">
+            <input type=\"hidden\" id=\"result-shortcut_id\" name=\"result-shortcut_id\" value=\"%s\">
             
         </form>",
                     $r["shortcut_name"],
@@ -221,7 +221,44 @@ if (isset($_SESSION["user_id"])) {
                 );
             }
         } else {
-            echo "<h3 style=\"text-align:center;\">まだ抜け道を登録していません</h3>";
+            echo "<h3 style=\"text-align:center;\">まだ公開の抜け道を登録していません</h3>";
+        }
+        echo "</div> <div class=\"myroutes\">";
+        //非公開の抜け道を表示
+        if (count($private_routes) > 0) {
+            foreach ($private_routes as $r) {
+                printf(
+                    "
+                    <h1 class=\"title\">My private nukemichi</h1>
+                    <div class=\"search-results-container \">
+          <div class=\"search-result private\">
+            <h1 class=\"route-name\">%s</h1>
+            <p class=\"result-location\">%s</p>
+            <p class=\"result-comment\">%s</p>
+            <p id=\"result-point_a\" style=\"display:none;\"> %s</p>
+            <p id=\"result-point_b\" style=\"display:none;\"> %s</p>
+            <p id=\"result-shortcut_id\" style=\"display:none;\">%s</p>
+          </div>
+        </div>
+        <form action=\"delete-route.php\" method=\"post\" class=\"btn btn-delete\">
+            
+                <span class=\"mdi mdi-delete mdi-24px\"></span>
+            <button class=\"mdi mdi-delete-empty mdi-24px\" type=\"submit\">
+            </button>
+            <input type=\"hidden\" id=\"result-shortcut_id\" name=\"result-shortcut_id\" value=\"%s\">
+            
+        </form>",
+                    $r["shortcut_name"],
+                    $r["address"],
+                    $r["comments"],
+                    $r["point_a"],
+                    $r["point_b"],
+                    $r["id"],
+                    $r["id"],
+                );
+            }
+        } else {
+            echo "<h3 style=\"text-align:center;\">まだ非公開の抜け道を登録していません</h3>";
         }
         ?>
     </div>

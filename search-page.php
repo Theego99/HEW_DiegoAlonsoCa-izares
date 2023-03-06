@@ -103,6 +103,6 @@ if (isset($_POST["search"])) {
       );
     }
   } else {
-    echo "検索結果なし";
+    echo "<h3 style=\"text-align:center;\">検索結果なし</h3>";
   }
 }

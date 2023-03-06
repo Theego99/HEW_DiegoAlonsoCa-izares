@@ -165,3 +165,60 @@ main {
 .loginbtn {
     margin:2%;
 }
+
+/* Small screen styles */
+@media (max-width: 767px) {
+    #features {
+      padding: 30px 15px;
+    }
+    
+    #features h3 {
+      font-size: 24px;
+    }
+    
+    #features ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .feature-icon {
+      display: none;
+    }
+    
+    .feature-content {
+      text-align: center;
+    }
+    
+    .feature-content h4 {
+      margin-top: 20px;
+    }
+    
+    .btn {
+      display: block;
+      margin: 30px auto 0;
+    }
+  }
+  
+  /* Medium and large screen styles */
+  @media (min-width: 768px) {
+    #features {
+      padding: 60px 0;
+    }
+    
+    #features ul {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .feature-icon {
+      margin-right: 30px;
+    }
+    
+    .feature-content {
+      flex: 1;
+    }
+    
+    .btn {
+      margin-top: 30px;
+    }
+  }

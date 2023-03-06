@@ -10,7 +10,7 @@ LEFT JOIN (
   FROM votes
   GROUP BY shortcut_id
 ) v ON s.id = v.shortcut_id
-WHERE s.shortcut_name LIKE ? OR s.comments LIKE ? OR s.address LIKE ? OR u.name LIKE ?
+WHERE private = 0 AND (s.shortcut_name LIKE ? OR s.comments LIKE ? OR s.address LIKE ? OR u.name LIKE ?)
 ORDER BY total_votes DESC;
 ");
 

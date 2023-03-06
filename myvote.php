@@ -11,6 +11,7 @@ $stmt = $mysqli->prepare("SELECT SUM(vote) AS total_votes FROM votes WHERE short
 $stmt->execute();
 $resultSet = $stmt->get_result();
 $votes_sum = $resultSet->fetch_all(MYSQLI_ASSOC);
+
 // my vote
 $stmt = $mysqli->prepare("SELECT vote FROM votes WHERE user_id = $user_id and shortcut_id = $shortcut_id");
 $stmt->execute();
@@ -30,7 +31,8 @@ if ($results) {
         "vote" => $results,
         "sum" => $votes_sum
     );
-    $stmt = $mysqli->prepare("INSERT INTO votes (user_id ,shortcut_id, vote) VALUES ($user_id, $shortcut_id, 0)");$stmt->execute();
+    $stmt = $mysqli->prepare("INSERT INTO votes (user_id ,shortcut_id, vote) VALUES ($user_id, $shortcut_id, 0)");
+    $stmt->execute();
     $stmt = $mysqli->prepare("SELECT vote FROM votes WHERE user_id = $user_id and shortcut_id = $shortcut_id");
     $stmt->execute();
     $resultSet = $stmt->get_result();
