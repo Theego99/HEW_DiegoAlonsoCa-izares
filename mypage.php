@@ -217,13 +217,14 @@ if (isset($_SESSION["user_id"])) {
         } else {
             echo "<h3 style=\"text-align:center;\">まだ公開の抜け道を登録していません</h3>";
         }
-        echo "</div> <div class=\"myroutes\">";
+        echo "</div> <div class=\"myroutes\">
+        <h1 class=\"title\">My private nukemichi</h1>";
         //非公開の抜け道を表示
         if (count($private_routes) > 0) {
             foreach ($private_routes as $r) {
                 printf(
                     "
-                    <h1 class=\"title\">My private nukemichi</h1>
+                    
                     <div class=\"search-results-container \">
           <div class=\"search-result private\">
             <h1 class=\"route-name\">%s</h1>
