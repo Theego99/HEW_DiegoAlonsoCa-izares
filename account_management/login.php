@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
 
-    <title>michi maker hp</title>
+    <title>ログイン</title>
     <!--ファビコンの設定-->
     <link rel="shortcut icon" href="../design/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../design/images/apple-touch-icon.png">
